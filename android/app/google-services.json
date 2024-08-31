@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1029843182429",
+    "project_id": "gtickets-789ea",
+    "storage_bucket": "gtickets-789ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029843182429:android:abeef2709da3982b2dfeb4",
+        "android_client_info": {
+          "package_name": "com.exemple.gestion_des_tickets"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe5fzEkI_uO8xaVdMF4skT_3TdRHn7RUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
