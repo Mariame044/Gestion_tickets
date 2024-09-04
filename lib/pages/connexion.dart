@@ -43,17 +43,22 @@ class _LoginPageState extends State<LoginPage> {
           // Redirection en fonction du rôle
           if (role == 'admin') {
             // Navigator.of(context).pushReplacementNamed('/listeusers');
+             // ignore: use_build_context_synchronously
              Navigator.of(context).pushReplacementNamed('/dashbord');
           } else if (role == 'formateur') {
+            // ignore: use_build_context_synchronously
             Navigator.of(context).pushReplacementNamed('/formateur');
           } else if (role == 'apprenant') {
+            // ignore: use_build_context_synchronously
             Navigator.of(context).pushReplacementNamed('/home');
           } else {
+            // ignore: use_build_context_synchronously
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Rôle inconnu')),
             );
           }
         } else {
+          // ignore: use_build_context_synchronously
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Aucune donnée utilisateur trouvée')),
           );
@@ -80,6 +85,7 @@ class _LoginPageState extends State<LoginPage> {
         errorMessage = e.toString();
       }
 
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(errorMessage)),
       );

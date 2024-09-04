@@ -32,4 +32,14 @@ class CategorieService {
         .map((doc) => Categorie.fromFirestore(doc))
         .toList();
   }
+    // Supprimer une catégorie par ID
+  Future<void> deleteCategorie(String id) async {
+    try {
+      await _categorieCollection.doc(id).delete();
+    } catch (e) {
+      throw Exception('Erreur lors de la suppression de la catégorie : ${e.toString()}');
+    }
+  }
 }
+
+

@@ -8,6 +8,10 @@ import 'package:gestion_des_tickets/pages/homepage.dart';
 import 'package:gestion_des_tickets/pages/inscription.dart';
 import 'package:gestion_des_tickets/pages/formateur.dart'; // Importez les pages
 import 'package:gestion_des_tickets/pages/listeusers.dart';
+import 'package:gestion_des_tickets/pages/messages.dart';
+import 'package:gestion_des_tickets/pages/profile.dart';
+import 'package:gestion_des_tickets/pages/settings.dart';
+import 'package:gestion_des_tickets/pages/tickets.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -51,7 +55,11 @@ class MyApp extends StatelessWidget {
                '/formateur': (context) => Formateur(), // Route vers la page d'accueil
                 '/listeusers': (context) => UserListPage(),
                   '/createcategorie': (context) => CategoriePage(),
-                  '/dashbord': (context) => AdminDashboard() // Route vers la page d'accueil
+                  '/dashbord': (context) => AdminDashboard(),
+                   '/messages': (context) => const MessagesPage(),
+                  '/settings': (context) => const SettingsPage(),
+                  '/profile': (context) => const UserProfilePage(),// Route vers la page d'accueil
+                  // '/tickets': (context) => TicketCreationScreen() // Route vers la page d'accueil
              
               
             },

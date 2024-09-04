@@ -130,75 +130,86 @@ class _InscriptionPageState extends State<inscription> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Inscription'),
+ @override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: const Text('Inscription'),
+    ),
+    body: SingleChildScrollView(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+        
+            width: double.infinity,
+            height: 300,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/reset2.png'),
+              ),
+            ),
+          ),
+          // Champ pour l'email
+          TextField(
+            controller: _emailController,
+            decoration: const InputDecoration(labelText: 'Email'),
+            keyboardType: TextInputType.emailAddress,
+            autocorrect: false,
+            textInputAction: TextInputAction.next,
+          ),
+          // Champ pour le nom
+          TextField(
+            controller: _nomController,
+            decoration: const InputDecoration(labelText: 'Nom'),
+            textInputAction: TextInputAction.next,
+          ),
+          // Champ pour le prénom
+          TextField(
+            controller: _prenomController,
+            decoration: const InputDecoration(labelText: 'Prénom'),
+            textInputAction: TextInputAction.next,
+          ),
+          // Champ pour le mot de passe
+          TextField(
+            controller: _passwordController,
+            decoration: const InputDecoration(labelText: 'Mot de passe'),
+            obscureText: true,
+            textInputAction: TextInputAction.next,
+          ),
+          // Champ pour la confirmation du mot de passe
+          TextField(
+            controller: _confirmPasswordController,
+            decoration: const InputDecoration(labelText: 'Confirmer le mot de passe'),
+            obscureText: true,
+            textInputAction: TextInputAction.done,
+          ),
+          const SizedBox(height: 20),
+          // Menu déroulant pour sélectionner le rôle
+          DropdownButton<String>(
+            value: _selectedRole,
+            onChanged: (String? newValue) {
+              setState(() {
+                _selectedRole = newValue!;
+              });
+            },
+            items: _roles.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+          ),
+          const SizedBox(height: 20),
+          // Bouton pour s'inscrire
+          ElevatedButton(
+            onPressed: _signUp,
+            child: const Text('S\'inscrire'),
+          ),
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Champ pour l'email
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
-              keyboardType: TextInputType.emailAddress,
-              autocorrect: false,
-              textInputAction: TextInputAction.next,
-            ),
-            // Champ pour le nom
-            TextField(
-              controller: _nomController,
-              decoration: const InputDecoration(labelText: 'Nom'),
-              textInputAction: TextInputAction.next,
-            ),
-            // Champ pour le prénom
-            TextField(
-              controller: _prenomController,
-              decoration: const InputDecoration(labelText: 'Prénom'),
-              textInputAction: TextInputAction.next,
-            ),
-            // Champ pour le mot de passe
-            TextField(
-              controller: _passwordController,
-              decoration: const InputDecoration(labelText: 'Mot de passe'),
-              obscureText: true,
-              textInputAction: TextInputAction.next,
-            ),
-            // Champ pour la confirmation du mot de passe
-            TextField(
-              controller: _confirmPasswordController,
-              decoration: const InputDecoration(labelText: 'Confirmer le mot de passe'),
-              obscureText: true,
-              textInputAction: TextInputAction.done,
-            ),
-            const SizedBox(height: 20),
-            // Menu déroulant pour sélectionner le rôle
-            DropdownButton<String>(
-              value: _selectedRole,
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedRole = newValue!;
-                });
-              },
-              items: _roles.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-            const SizedBox(height: 20),
-            // Bouton pour s'inscrire
-            ElevatedButton(
-              onPressed: _signUp,
-              child: const Text('S\'inscrire'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+    ),
+  );
+}
 }
