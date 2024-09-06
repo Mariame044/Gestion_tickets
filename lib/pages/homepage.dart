@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gestion_des_tickets/composants/barre.dart';
+import 'package:gestion_des_tickets/modele/discussion.dart';
 import 'package:gestion_des_tickets/pages/detailTickets.dart';
+import 'package:gestion_des_tickets/pages/discussion.dart';
 import 'package:gestion_des_tickets/pages/tickets.dart';
 
 import 'package:gestion_des_tickets/services/ticketsService.dart';
@@ -12,6 +15,7 @@ import 'package:gestion_des_tickets/modele/categorie.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
+  
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -20,6 +24,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final TicketService _ticketService = TicketService();
   final CategorieService _categorieService = CategorieService();
+
   List<Categorie> _categories = [];
   List<Ticket> _tickets = [];
    List<Ticket> _filteredTickets = []; // Liste filtrée des tickets
@@ -209,15 +214,22 @@ class _HomePageState extends State<HomePage> {
 }
 
 
- void _onItemTapped(int index) {
+Future<List<Discussion>> _getDiscussions() async {
+  final discussionSnapshots = await FirebaseFirestore.instance.collection('discussions').get();
+  
+  return discussionSnapshots.docs.map((doc) => Discussion.fromFirestore(doc)).toList();
+}
+
+ Future<void> _onItemTapped(int index) async {
     setState(() {
       _selectedIndex = index;
     });
     //Ajoutez la logique pour chaque élément de la barre de navigation, par exemple :
     if (index == 0) { // Home
       Navigator.pushNamed(context, '/home');
-    } else if (index == 1) { // Messages
-      Navigator.pushNamed(context, '/messages');
+    } else if (index == 1) {
+      Navigator.pushNamed(context, '/discussion');
+     
     } else if (index == 2) { // Paramètres
       Navigator.pushNamed(context, '/settings');
     }

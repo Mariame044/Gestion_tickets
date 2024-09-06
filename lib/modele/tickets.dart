@@ -54,6 +54,7 @@
 //   }
 // }
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Ticket {
   String id;
@@ -63,7 +64,7 @@ class Ticket {
   String category;
   String createdBy;
   String? assignedTo;
-  Map<String, String> responses; // Changement ici pour Map
+  Map<String, String> responses; // Utilisation de Map pour les réponses
   Timestamp timestamp;
 
   Ticket({
@@ -88,8 +89,8 @@ class Ticket {
       status: data['status'] ?? 'Attente',
       category: data['category'] ?? '',
       createdBy: data['createdBy'] ?? '',
-      assignedTo: data['assignedTo'],
-      responses: Map<String, String>.from(data['responses'] ?? {}), // Changement ici
+      assignedTo: data['assignedTo'] as String?, // Assurez-vous que assignedTo est null ou String
+      responses: Map<String, String>.from(data['responses'] ?? {}), // Conversion en Map<String, String>
       timestamp: data['timestamp'] ?? Timestamp.now(),
     );
   }
@@ -103,7 +104,7 @@ class Ticket {
       'category': category,
       'createdBy': createdBy,
       'assignedTo': assignedTo,
-      'responses': responses, // Changement ici
+      'responses': responses, // Conversion en Map<String, String>
       'timestamp': timestamp,
     };
   }

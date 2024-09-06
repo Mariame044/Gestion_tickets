@@ -1,4 +1,3 @@
-// ticket_service.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gestion_des_tickets/modele/tickets.dart';
 import 'package:gestion_des_tickets/modele/users.dart' as local_users;

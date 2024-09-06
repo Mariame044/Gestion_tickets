@@ -68,17 +68,17 @@ class _FormateurState extends State<Formateur> {
     }
   }
   
-  void _onItemTapped(int index) {
+   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-    // Ajoutez la logique pour chaque élément de la barre de navigation, par exemple :
+    //Ajoutez la logique pour chaque élément de la barre de navigation, par exemple :
     if (index == 0) { // Home
-      Navigator.pushNamed(context, '/homepage');
-    // } else if (index == 1) { // Messages
-    //   Navigator.pushNamed(context, '/messages');
-    // } else if (index == 2) { // Paramètres
-    //   Navigator.pushNamed(context, '/settings');
+      Navigator.pushNamed(context, '/formateur');
+    } else if (index == 1) { // Messages
+      Navigator.pushNamed(context, '/discussion');
+    } else if (index == 2) { // Paramètres
+      Navigator.pushNamed(context, '/settings');
     }
   }
 
@@ -226,9 +226,15 @@ class _FormateurState extends State<Formateur> {
           }
         },
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
+           BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Messages'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Paramètres'),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        onTap: _onItemTapped,
       ),
     );
   }
